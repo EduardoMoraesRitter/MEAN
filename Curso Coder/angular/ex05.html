@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+  <head>
+    <meta charset="utf-8">
+    <title>funcamentos da angular</title>
+    <script type="text/javascript" src="..\..\..\node_modules\angular\angular.min.js"></script>
+    <script type="text/javascript">
+//https://johnpapa.net/angular-style-guide/
+
+      angular.module('app', [])//nomedo modulo, as dependencias[]
+
+      //filtro
+      angular.module('app').filter('upper', function () {
+        return function(input){
+          return input.toUpperCase()
+        }
+      })
+
+      angular.module('app').controller('meuController', [
+        function(){//acessar da view direto no controller
+          const self = this
+          self.value = 'texto'
+        }
+      ])//controler
+    </script>
+  </head>
+  <body>
+      <div ng-controller='meuController as ctrl'>
+        <h1>{{ctrl.value | upper}}</h1>
+        <input ng-model="ctrl.value">
+      </div>
+  </body>
+</html>

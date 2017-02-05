@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+  <head>
+    <meta charset="utf-8">
+    <title>funcamentos da angular</title>
+    <script type="text/javascript" src="..\..\..\node_modules\angular\angular.min.js"></script>
+    <script type="text/javascript">
+      angular.module('app', [])
+      //criacao de service, como singonton
+      angular.module('app').service('utils', function () {
+          this.upper = function(input){
+            return input.toUpperCase()
+          }
+        })
+
+        angular.module('app').controller('MeuController', [
+          'utils',//injesao de dependencias
+          function(utils){
+            const vm = this
+            vm.value = utils.upper('outro')
+          }
+        ])
+    </script>
+  </head>
+  <body>
+      <div ng-controller="MeuController as ctrl">
+        <h1>{{ctrl.value}}</h1>
+      </div>
+  </body>
+</html>

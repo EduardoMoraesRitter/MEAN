@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+  <head>
+    <meta charset="utf-8">
+    <title>funcamentos da angular</title>
+    <script type="text/javascript" src="..\..\..\node_modules\angular\angular.min.js"></script>
+    <script type="text/javascript">
+      angular.module('app', [])
+      //criacao de facture (nomde da facture, [suas dependencias], uma funcao)
+      angular.module('app').factory('utils', function () {
+          function upper(input){
+            return input.toUpperCase()
+          }
+          return { upper }//temq retornar um objeto
+        })
+
+        angular.module('app').controller('MeuController', [
+          'utils',//injesao de dependencias
+          function(utils){
+            const vm = this
+            vm.value = utils.upper('texto')
+          }
+        ])
+    </script>
+  </head>
+  <body>
+      <div ng-controller="MeuController as ctrl">
+        <h1>{{ctrl.value}}</h1>
+      </div>
+  </body>
+</html>
